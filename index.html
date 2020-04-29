@@ -1,0 +1,883 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="apple-touch-icon-precomposed" sizes="57x57" href="https://covid19.mhpolice.in/img/favicons/apple-touch-icon-57x57.png" />
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://covid19.mhpolice.in/img/favicons/apple-touch-icon-114x114.png" />
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://covid19.mhpolice.in/img/favicons/apple-touch-icon-72x72.png" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://covid19.mhpolice.in/img/favicons/apple-touch-icon-144x144.png" />
+<link rel="apple-touch-icon-precomposed" sizes="60x60" href="https://covid19.mhpolice.in/img/favicons/apple-touch-icon-60x60.png" />
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="https://covid19.mhpolice.in/img/favicons/apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon-precomposed" sizes="76x76" href="https://covid19.mhpolice.in/img/favicons/apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://covid19.mhpolice.in/img/favicons/apple-touch-icon-152x152.png" />
+<link rel="icon" type="image/png" href="https://covid19.mhpolice.in/img/favicons/favicon-196x196.png" sizes="196x196" />
+<link rel="icon" type="image/png" href="https://covid19.mhpolice.in/img/favicons/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/png" href="https://covid19.mhpolice.in/img/favicons/favicon-32x32.png" sizes="32x32" />
+<link rel="icon" type="image/png" href="https://covid19.mhpolice.in/img/favicons/favicon-16x16.png" sizes="16x16" />
+<link rel="icon" type="image/png" href="https://covid19.mhpolice.in/img/favicons/favicon-128.png" sizes="128x128" />
+<meta name="application-name" content="Eagle Eye" />
+<meta name="msapplication-TileColor" content="#FFFFFF" />
+<meta name="msapplication-TileImage" content="https://covid19.mhpolice.in/img/favicons/mstile-144x144.png" />
+<meta name="msapplication-square70x70logo" content="https://covid19.mhpolice.in/img/favicons/mstile-70x70.png" />
+<meta name="msapplication-square150x150logo" content="https://covid19.mhpolice.in/img/favicons/mstile-150x150.png" />
+<meta name="msapplication-wide310x150logo" content="https://covid19.mhpolice.in/img/favicons/mstile-310x150.png" />
+<meta name="msapplication-square310x310logo" content="https://covid19.mhpolice.in/img/favicons/mstile-310x310.png" />
+<title>Essential Services Registration Form | Covid19 ePass</title>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+<link rel="stylesheet" href="https://covid19.mhpolice.in/bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
+<link rel="stylesheet" href="https://covid19.mhpolice.in/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+<link rel="stylesheet" href="https://covid19.mhpolice.in/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+
+<link rel="stylesheet" href="https://covid19.mhpolice.in/dist/css/AdminLTE.min.css">
+
+<link rel="stylesheet" href="https://covid19.mhpolice.in/dist/css/skins/_all-skins.min.css">
+<link rel="stylesheet" href="https://covid19.mhpolice.in/dist/css/skins/skin.css">
+<link rel="stylesheet" href="https://covid19.mhpolice.in/dist/css/crime-entry-form.css">
+<link rel="stylesheet" href="https://covid19.mhpolice.in/dist/css/send-alerts-form.css">
+<link rel="stylesheet" href="https://covid19.mhpolice.in/plugins/jQueryUI/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="https://covid19.mhpolice.in/dist/css/style.css">
+<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<script src="https://covid19.mhpolice.in/plugins/jQuery/jquery-2.2.4.min.js"></script>
+<script src="https://covid19.mhpolice.in/plugins/jQueryUI/jquery-ui.min.js"></script>
+<script type="text/javascript">
+      setTimeout(function(){
+        if (document.getElementById('temp')) {
+          var item = document.getElementById('temp')
+          item.parentNode.removeChild(item); 
+        }
+      }, 60000);
+      
+      $(document).ready(function() {
+          $('#form').submit(function() {
+              $('#loading-div').css('display', 'initial');
+          });
+
+        $("#upload-media").on('click', function() {
+            $("#attach").trigger('click');
+        });
+         $('#attach').change(function(e){
+            var fileName = e.target.files[0].name;
+            document.getElementById("attachtext").value = fileName;
+        });
+      })
+
+    function post(path, params, method) {
+        method = method || "post"; // Set method to post by default if not specified.
+
+        // The rest of this code assumes you are not using a library.
+        // It can be made less wordy if you use one.
+        var form = document.createElement("form");
+        form.setAttribute("method", method);
+        form.setAttribute("action", path);
+
+        for(var key in params) {
+            if(params.hasOwnProperty(key)) {
+                var hiddenField = document.createElement("input");
+                hiddenField.setAttribute("type", "hidden");
+                hiddenField.setAttribute("name", key);
+                hiddenField.setAttribute("value", params[key]);
+
+                form.appendChild(hiddenField);
+             }
+        }
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+    </script>
+<style>
+        .modal {
+            position: fixed;
+            float: none;
+            margin: 0 auto;
+            display: none;
+            z-index: 9999;
+        }
+
+        .content-wrapper, .right-side, .main-footer {
+            margin-left: 0px !important;
+        }
+
+        .modal {
+            background: transparent !important;
+        }
+
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            margin: 0; 
+        }
+    </style>
+</head>
+<body class="hold-transition skin-blue sidebar-mini " oncontextmenu="return false;">
+<div class="wrapper">
+<div class="content-wrapper">
+
+<section class="content-header">
+<ol class="breadcrumb">
+<li><a href="#"><i class="fa fa-file-text-o"></i> Covid19</a></li>
+<li class="active">Essential Services Registration</li>
+</ol>
+</section>
+<div class="container-fluid">
+<div class="row" style="height: 100%"><br><br>
+<div class="col-md-10 col-centered dcr_form" style="padding-left: 0px; padding-right: 0px">
+<div class="col-md-12" style="padding: 10px; margin-left: 0px; margin-right: 0px; background: #284f7b;">
+<div class="col-md-2 col-centered">
+<div style="text-align: center;">
+<img style="width: 100px;" src="https://covid19.mhpolice.in/img/logo.png">
+</div>
+</div>
+</div>
+<script type="text/javascript">    
+                        $(document).ready(function() {
+                            $("#district").change(function() {
+                                var el = $(this) ;
+                                if(el.val() == "none") {
+                                    $(".district_hidden").css("display","none");
+                                    $("#limit_error").css("display","block");
+                                } else {
+                                    $(".district_hidden").css("display","block");
+                                    $("#limit_error").css("display","none");
+                                }
+                            });
+                        });
+                        
+                        $(function(){
+                            // $('#from_date').datepicker({
+                            //   dateFormat: 'yy-mm-dd',
+                            //   changeMonth: true,
+                            //   changeYear: true,
+                            //   maxDate:'2020-05-04'
+                            // }); 
+                            // $('#to_date').datepicker({
+                            //   dateFormat: 'yy-mm-dd',
+                            //   changeMonth: true,
+                            //   changeYear: true,
+                            //   maxDate:'2020-05-04'
+                            // }); 
+
+                            $("#from_date").datepicker({
+                                dateFormat: 'yy-mm-dd',
+                                changeMonth: true,
+                                changeYear: true,
+                                maxDate:'2020-05-03',
+                                minDate: new Date, 
+                                onSelect: function (date) {
+                                    var date2 = $('#from_date').datepicker('getDate');
+                                    //date2.setDate(date2.getDate() + 1);
+                                    $('#to_date').datepicker('setDate', date2);
+                                    //sets minDate to dt1 date + 1
+                                    $('#to_date').datepicker('option', 'minDate', date2); 
+                                   /* $('#to_date').datepicker({dateFormat: "yy/mm/dd", 'minDate':date2}); */
+                                }
+                            });
+                            $('#to_date').datepicker({
+                                dateFormat: 'yy-mm-dd',
+                                changeMonth: true,
+                                changeYear: true,
+                                maxDate:'2020-05-03',
+                                minDate: new Date, 
+                                onClose: function () {
+                                    var dt1 = $('#from_date').datepicker('getDate');
+                                    //console.log(dt1);
+                                    var dt2 = $('#to_date').datepicker('getDate');
+                                    if (dt2 <= dt1) {
+                                        var minDate = $('#to_date').datepicker('option', 'minDate');
+                                        $('#to_date').datepicker('setDate', minDate);
+                                    }
+                                }
+                            });       
+                        });
+
+                    </script>
+<div class="col-md-12 district_hidden">
+<h3 class="form-subtitle" style="padding-top: 25px; text-align:center;">अत्यावश्यक सेवा देण्याराची माहिती</h3>
+<h5 class="form-subtitle" id="message" style="color: red; padding-top: 25px; text-align:center; display: none;"></h5><br>
+</div>
+<div class="col-md-12" id="limit_error" style="border: 1px solid black; border-radius: 4px; background: #ffe1e1; display: none;">
+<div style="width: 100%; text-align: center;">
+<h3 class="form-subtitle" style="padding-top: 25px; text-align:center;">For emergency situation, contact your nearest police station, with appropriate documents.</h3><br>
+<h4 class="form-subtitle" style="text-align:center;">आपत्कालीन परिस्थितीसाठी, आपल्या जवळच्या पोलिस स्टेशनला योग्य कागदपत्रांसह संपर्क साधा</h4>
+</div>
+</div>
+<form method="POST" action="" class="district_hidden" id="form" enctype="multipart/form-data">
+<input type="hidden" name="09b09341bc" value="7179eace10eb490d18921f6328d0b34ea0d10daddd6848bf656392c01d4d8cb0" />
+<div class="" style="padding: 20px;">
+<div class="col-md-12 eservice_fields" style="border: 1px solid black; padding-top: 30px;    padding-bottom: 30px; margin-right: 20px; background-color: #ecf0f5;    border-radius: 5px;">
+<div class="row">
+<div class="col-md-12">
+<div class="col-md-3">
+<p class="black-text">जिल्हा / पोलीस आयुक्तालय : <font color="red">*</font></p>
+<select name="district" id="district" class="signup-form">
+<option value="" disabled selected>Select District/Police Commissionerate</option>
+<option value='Ahmednagar'>Ahmednagar</option><option value='Akola'>Akola</option><option value='Amravati City'>Amravati City</option><option value='Amravati Rural'>Amravati Rural</option><option value='Aurangabad City'>Aurangabad City</option><option value='Aurangabad Rural'>Aurangabad Rural</option><option value='Beed'>Beed</option><option value='Bhandara'>Bhandara</option><option value='Buldhana'>Buldhana</option><option value='Chandrapur'>Chandrapur</option><option value='Dhule'>Dhule</option><option value='Gadchiroli'>Gadchiroli</option><option value='Gondia'>Gondia</option><option value='Hingoli'>Hingoli</option><option value='Jalgaon'>Jalgaon</option><option value='Jalna'>Jalna</option><option value='Kolhapur'>Kolhapur</option><option value='Latur'>Latur</option><option value='Nagpur City'>Nagpur City</option><option value='Nagpur Rural'>Nagpur Rural</option><option value='Nanded'>Nanded</option><option value='Nandurbar'>Nandurbar</option><option value='Navi Mumbai'>Navi Mumbai</option><option value='Osmanabad'>Osmanabad</option><option value='Palghar'>Palghar</option><option value='Parbhani'>Parbhani</option><option value='Pimpri Chinchwad'>Pimpri Chinchwad</option><option value='Pune Rural'>Pune Rural</option><option value='Raigad'>Raigad</option><option value='Ratnagiri'>Ratnagiri</option><option value='Sangli'>Sangli</option><option value='Satara'>Satara</option><option value='Sindhudurg'>Sindhudurg</option><option value='Solapur City'>Solapur City</option><option value='Solapur Rural'>Solapur Rural</option><option value='Thane City'>Thane City</option><option value='Thane Rural'>Thane Rural</option><option value='Wardha'>Wardha</option><option value='Washim'>Washim</option><option value='Yavatmal'>Yavatmal</option> </select>
+<input type="hidden" name="isinter_state" id="isinter_state" value="0">
+<p id="district_error" style="color: red; display: none;"></p>
+<br><br>
+</div>
+<div class="col-md-3">
+<p class="black-text">नाव : <font color="red">*</font></p>
+<input type="text" name="name" id="name" class="signup-form" placeholder="नाव" style="text-transform: capitalize;" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="75">
+<p id="name_error" style="color: red; display: none;"></p>
+<br><br>
+</div>
+<div class="col-md-3">
+<p class="black-text">अत्यावश्यक सेवा प्रकार : <font color="red">*</font></p>
+<select name="essential_service_type" id="essential_service_type" class="signup-form">
+<option value="" disabled selected>Select Essential Service Type</option>
+<option value='Bank/Finance/ATM'>Bank/Finance/ATM</option><option value='Cable TV'>Cable TV</option><option value='Company'>Company</option><option value='Dairy'>Dairy</option><option value='Government/Civil Government'>Government/Civil Government</option><option value='LPG Gas Delivery'>LPG Gas Delivery</option><option value='Medical (Hospital/Ambulance)'>Medical (Hospital/Ambulance)</option><option value='Medical (Pharmacy/Shop)'>Medical (Pharmacy/Shop)</option><option value='Petrol Pump'>Petrol Pump</option><option value='Press (Media/Reporter)'>Press (Media/Reporter)</option><option value='Ration/Groceries/Food'>Ration/Groceries/Food</option><option value='Telecommunication'>Telecommunication</option><option value='Transport'>Transport</option> <option>Other</option>
+</select>
+<p id="essential_service_type_error" style="color: red; display: none;"></p>
+<br><br>
+</div>
+<div class="col-md-3">
+<p class="black-text">वाहन क्रमांक : <font color="red">*</font></p>
+<input type="text" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="vehicle_number" name="vehicle_number" class="signup-form" placeholder="MH 04 AA 1342" maxlength="15" style="text-transform:uppercase;">
+<p id="vehicle_number_error" style="color: red; display: none;"></p>
+<br><br>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<div class="col-md-3">
+<p class="black-text">मोबाईल : <font color="red">*</font></p>
+<input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" id="mobile_number" name="mobile_number" class="signup-form" placeholder="मोबाईल" maxlength="10" min="0">
+<p id="mobile_number_error" style="color: red; display: none;"></p>
+<br><br>
+</div>
+<div class="col-md-3">
+<p class="black-text">ई-मेल : </p>
+<input type="email" id="email_id" name="email_id" class="signup-form" placeholder="ई-मेल " oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="100" style="text-transform:lowercase;">
+<p id="email_id_error" style="color: red; display: none;"></p>
+<br><br>
+</div>
+<div class="col-md-3">
+<p class="black-text">च्या तारखेपासून : <font color="red">*</font></p>
+<input placeholder="&#xf073; &nbsp;yyyy-mm-dd" type="text" id="from_date" name="from_date" class="signup-form" value="2020-04-16" required readonly>
+<p id="from_date_error" style="color: red; display: none;"></p>
+<br><br>
+</div>
+<div class="col-md-3">
+<p class="black-text">च्या तारखेपर्यंत : <font color="red">*</font></p>
+<input placeholder="&#xf073; &nbsp;yyyy-mm-dd" type="text" id="to_date" name="to_date" class="signup-form" value="2020-05-03" required readonly>
+<p id="to_date_error" style="color: red; display: none;"></p>
+<br><br>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<div class="col-md-3">
+<p class="black-text">अत्यावश्यक सेवा कारण / उददेश : <font color="red">*</font></p>
+<input type="text" name="purpose" id="purpose" class="signup-form" placeholder="अत्यावश्यक सेवा कारण / उददेश" maxlength="200" style="text-transform: capitalize;" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+<p id="purpose_error" style="color: red; display: none;"></p>
+<br><br>
+</div>
+<div class="col-md-9">
+<p class="black-text">पत्ता : <font color="red">*</font></p>
+<input type="text" name="address" id="address" class="signup-form" placeholder="पत्ता" maxlength="150" style="text-transform: capitalize;" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+<p id="address_error" style="color: red; display: none;"></p>
+<br><br>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<div class="col-md-3">
+<p class="black-text">वाहनाचा प्रकार : <font color="red">*</font></p>
+<input type="text" name="vehicle_type" id="vehicle_type" class="signup-form" placeholder="वाहनाचा प्रकार" maxlength="100" style="text-transform: capitalize;" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+<p id="vehicle_type_error" style="color: red; display: none;"></p>
+<br><br>
+</div>
+<div class="col-md-3">
+<p class="black-text">प्रवास प्रारंभ ठिकाण : <font color="red">*</font></p>
+
+<select name="starting_point" id="starting_point" class="signup-form">
+<option value="" disabled selected>Select Starting Point District/Police Commissionerate</option>
+<option value='Ahmednagar'>Ahmednagar</option><option value='Akola'>Akola</option><option value='Amravati City'>Amravati City</option><option value='Amravati Rural'>Amravati Rural</option><option value='Aurangabad City'>Aurangabad City</option><option value='Aurangabad Rural'>Aurangabad Rural</option><option value='Beed'>Beed</option><option value='Bhandara'>Bhandara</option><option value='Buldhana'>Buldhana</option><option value='Chandrapur'>Chandrapur</option><option value='Dhule'>Dhule</option><option value='Gadchiroli'>Gadchiroli</option><option value='Gondia'>Gondia</option><option value='Hingoli'>Hingoli</option><option value='Jalgaon'>Jalgaon</option><option value='Jalna'>Jalna</option><option value='Kolhapur'>Kolhapur</option><option value='Latur'>Latur</option><option value='Nagpur City'>Nagpur City</option><option value='Nagpur Rural'>Nagpur Rural</option><option value='Nanded'>Nanded</option><option value='Nandurbar'>Nandurbar</option><option value='Navi Mumbai'>Navi Mumbai</option><option value='Osmanabad'>Osmanabad</option><option value='Palghar'>Palghar</option><option value='Parbhani'>Parbhani</option><option value='Pimpri Chinchwad'>Pimpri Chinchwad</option><option value='Pune Rural'>Pune Rural</option><option value='Raigad'>Raigad</option><option value='Ratnagiri'>Ratnagiri</option><option value='Sangli'>Sangli</option><option value='Satara'>Satara</option><option value='Sindhudurg'>Sindhudurg</option><option value='Solapur City'>Solapur City</option><option value='Solapur Rural'>Solapur Rural</option><option value='Thane City'>Thane City</option><option value='Thane Rural'>Thane Rural</option><option value='Wardha'>Wardha</option><option value='Washim'>Washim</option><option value='Yavatmal'>Yavatmal</option> <option value="Mumbai">Mumbai</option>
+<option value="Pune">Pune</option>
+</select>
+<p id="starting_point_error" style="color: red; display: none;"></p>
+<br><br>
+</div>
+<div class="col-md-3">
+<p class="black-text">प्रवासाचे अंतिम ठिकाण : <font color="red">*</font></p>
+
+<select name="destination" id="destination" class="signup-form">
+ <option value="" disabled selected>Select Destination Point District/Police Commissionerate</option>
+<option value='Ahmednagar'>Ahmednagar</option><option value='Akola'>Akola</option><option value='Amravati City'>Amravati City</option><option value='Amravati Rural'>Amravati Rural</option><option value='Aurangabad City'>Aurangabad City</option><option value='Aurangabad Rural'>Aurangabad Rural</option><option value='Beed'>Beed</option><option value='Bhandara'>Bhandara</option><option value='Buldhana'>Buldhana</option><option value='Chandrapur'>Chandrapur</option><option value='Dhule'>Dhule</option><option value='Gadchiroli'>Gadchiroli</option><option value='Gondia'>Gondia</option><option value='Hingoli'>Hingoli</option><option value='Jalgaon'>Jalgaon</option><option value='Jalna'>Jalna</option><option value='Kolhapur'>Kolhapur</option><option value='Latur'>Latur</option><option value='Nagpur City'>Nagpur City</option><option value='Nagpur Rural'>Nagpur Rural</option><option value='Nanded'>Nanded</option><option value='Nandurbar'>Nandurbar</option><option value='Navi Mumbai'>Navi Mumbai</option><option value='Osmanabad'>Osmanabad</option><option value='Palghar'>Palghar</option><option value='Parbhani'>Parbhani</option><option value='Pimpri Chinchwad'>Pimpri Chinchwad</option><option value='Pune Rural'>Pune Rural</option><option value='Raigad'>Raigad</option><option value='Ratnagiri'>Ratnagiri</option><option value='Sangli'>Sangli</option><option value='Satara'>Satara</option><option value='Sindhudurg'>Sindhudurg</option><option value='Solapur City'>Solapur City</option><option value='Solapur Rural'>Solapur Rural</option><option value='Thane City'>Thane City</option><option value='Thane Rural'>Thane Rural</option><option value='Wardha'>Wardha</option><option value='Washim'>Washim</option><option value='Yavatmal'>Yavatmal</option> <option value="Mumbai">Mumbai</option>
+<option value="Pune">Pune</option>
+</select>
+<p id="destination_error" style="color: red; display: none;"></p>
+<br><br>
+</div>
+<div class="col-md-3">
+<p class="black-text">सहप्रवासी संख्या : <font color="red">*</font></p>
+<select id="no_co_passenger" name="no_co_passenger" class="signup-form" required>
+<option value="0" selected>0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+</select>
+
+<p id="no_co_passenger_error" style="color: red; display: none;"></p>
+<br><br>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<div class="col-md-6">
+<p class="black-text"><font color="red">Home Quarantined चा स्टॅम्प तुमच्या हातावर आहे का ? : *</font></p>
+<select id="is_home_quarantine" name="is_home_quarantine" class="signup-form">
+<option value="" disabled selected>Are you under home quarantine?</option>
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+<p id="is_home_quarantine_error" style="color: red; display: none;"></p>
+<br><br>
+</div>
+<div class="col-md-6">
+<p class="black-text">आपल्या वर कोणताही फौजदारी गुन्हा दाखल आहे का ? : <font color="red">*</font></p>
+<select id="is_criminal_background" name="is_criminal_background" class="signup-form">
+<option value="" disabled selected>Is there any criminal offence registered against you ?</option>
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+</select>
+<p id="is_criminal_background_error" style="color: red; display: none;"></p>
+<br><br>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row image">
+<div class="col-md-12" style="padding-top: 20px;">
+<p style="font-size: 15px; text-align: center;"><span style="color: red"><img class="flashing_star" src="https://covid19.mhpolice.in/dist/img/gif/flashing_star.gif"><a href="https://tinypng.com/" target="_blank"> इमेज कॉम्प्रेस (साईझ कमी) करण्यासाठी येथे क्लिक करा </a><img class="flashing_star" src="https://covid19.mhpolice.in/dist/img/gif/flashing_star.gif"></span></p>
+</div>
+</div>
+<script src="https://covid19.mhpolice.in/plugins/assets/js/bootstrap-fileupload.js"></script>
+<script src="https://covid19.mhpolice.in/plugins/assets/js/jquery.metisMenu.js"></script>
+<div class="row image" style="margin-left: 20px; margin-right: 20px; border: 1px solid black; padding-top: 30px;    padding-bottom: 30px; background-color: #ecf0f5; border-radius: 5px;">
+<h3 class="form-subtitle">फोटो व कागदपत्रे जोडा</h3>
+<h4 class="form-subtitle">(Attach Photo and Documents)</h4><br><br>
+<div class="col-md-12">
+<div class="col-md-3">
+<input type="button" id="enable_camera" onclick="webcam_init()" value="Enable Webcam" class="btn btn-primary" style="margin-bottom: 5px;">
+<div id="my_camera"></div>
+<div id="clickImage" hidden>
+<input type="button" value="Take Snapshot" onClick="take_snapshot()" class="btn btn-primary">
+</div>
+</div>
+<div class="col-md-3" id="results"></div>
+<div class="col-md-3">
+<p class="black-text">Attach Your Photo : </p>
+<div class="fileupload fileupload-new" data-provides="fileupload">
+<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 225px; line-height: 20px;"><img src="https://covid19.mhpolice.in/img/no_image_new.png" alt="" id="demo_img" /></div>
+<input type="file" name="attached_file" accept=".jpg,.jpeg" id="attached_file" required />
+<p style="font-size: 15px; padding-top: 5px;"><span style="color: red"> इमेजची साईझ 200 kb च्या वर नसावी. </span></p>
+</div>
+</div>
+<div class="col-md-3">
+<p class="black-text">Attach Relevant Document: <font color="red">*</font></p>
+<p style="font-size: 15px; padding-top: 5px;"><span style="color: red" id="attached_document_message"> (Valid Organization Document/Medical Report /Company ID etc.) </span></p>
+<input type="button" class="btn btn-primary" name="upload-media" id="upload-media" value="Choose File" style="margin: 5px 1px;">
+<input class="form-control" type="file" name="attached_document" id="attach" style="display: none;" accept=".jpg, .jpeg, .pdf" required>
+<input class="form-control" type="text" name="attachtext" id="attachtext" disabled style="    margin-top: -37px; padding-left: 110px;"><p id="attached_document_error" style="color: red; display: none;"></p><br><br>
+<p style="font-size: 15px; padding-top: 5px;"><span style="color: red"> फाईलची साईझ 500 kb च्या वर नसावी. </span></p>
+</div>
+<script type="text/javascript" src="https://covid19.mhpolice.in/plugins/webcamJS/webcam.min.js"></script>
+<script language="JavaScript">
+                                    function webcam_init() 
+                                    {
+                                        Webcam.set({
+                                        width: 220,
+                                        height: 200,
+                                        image_format: 'jpeg',
+                                        jpeg_quality: 90
+                                        });
+                                        Webcam.attach( '#my_camera' );
+                                        $("#my_camera").attr("hidden", false);
+                                        $("#clickImage").attr("hidden", false);
+                                        $("#enable_camera").val('Disable Webcam');
+                                        $("#enable_camera").attr("onclick","disable_camera()");
+                                        
+                                    }
+                                    function disable_camera() {
+                                        Webcam.reset();
+                                        $("#clickImage").attr("hidden", true);
+                                        $("#enable_camera").val('Enable Camera');
+                                        $("#enable_camera").attr("onclick","webcam_init()");
+                                        $("#attached_file").attr('disabled', false);
+                                        $("#demo_img").attr('disabled', false);
+                                        $("#demo_img").attr('required', true);
+                                        
+                                        document.getElementById('results').innerHTML = "";
+                                    }
+                                </script>
+<script language="JavaScript">
+                                    function take_snapshot() 
+                                    {
+                                        Webcam.snap( function(data_uri) {
+                                            $("#attached_file").attr('disabled', true);
+                                            $("#demo_img").attr('disabled', true);
+                                            $("#demo_img").attr('required', false);
+                                            document.getElementById('results').innerHTML = 
+                                            '<img style="margin-top: 34px;" style="width: 100%;" src="'+data_uri+'" />' + 
+                                            '<p>Captured Image</p>' +
+                                            '<input value="'+data_uri+'" name="captured_image" type="hidden" id="captured_image" />';
+                                        });
+                                    }           
+                                </script>
+</div>
+</div>
+<div class="row">
+<div class="col-md-5 col-centered text-center"><br><br>
+<button class="button button_submit" type="submit" id="button_submit" name="submit" style="width: 200px;" onclick="return checkvalidation();">Submit</button>
+</div>
+</div><br><br><br><br>
+</form>
+</div>
+</div>
+</div>
+</div>
+<div id="myModal" class="modal fade" data-keyboard="false" data-backdrop="static">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-body">
+<div class="col-md-12" style="border: 1px solid black; border-radius: 4px; background: #f0f8ff; margin-bottom: 15px;">
+<div style="width: 100%; text-align: center; margin-bottom: 15px; margin-top: 15px;">
+<h4 style="font-weight: bold;">महत्वाच्या सूचना</h4>
+</div>
+<div style="text-align: left; width: 100%;">
+<ol>
+<li style="margin-top: 5px;color: red;">फोटो ची साईझ ही 200 Kb तसेच संबंधित कागदपत्रा ची साईझ 500 Kb पेक्षा जास्त नसावी. </li>
+<li style="margin-top: 5px;color: red;">सरदर्हू अर्ज हा English मध्येच भरावा</li>
+<li style="margin-top: 5px;color: red;">जर सदरहू यादी मध्ये आपल्या पोलीस मुख्यालयाचे नाव नसतील तर त्या मुख्यालयाशी संपर्क साधावा</li>
+<li style="margin-top: 5px;color: red;">कृपया कोणत्याही मदतीसाठी किंवा क्वेरीसाठी जवळपासचे पोलिस स्टेशन किंवा पोलिस मुख्यालयाशी संपर्क साधा.</li>
+<li style="margin-top: 5px; color: red;">कृपया कंपनीच्या प्रतिनिधीला कॉल करु नये.</li>
+<li style="margin-top: 5px; color: red;">This portal is only for travelling within Maharashtra state</li>
+</ol>
+</div>
+</div>
+<div class="col-md-12" style="border: 1px solid black; border-radius: 4px; background: #f0f8ff; margin-bottom: 10px; display: block;">
+<div>
+<h4 style="margin-left: 20px;"><b>हा पास महाराष्ट्राबाहेर चालणार नाही / This pass is not applicable outside Maharashtra</b></h4>
+</div>
+</div>
+<div class="col-md-12" style="border: 1px solid black; border-radius: 4px; background: #f0f8ff; margin-bottom: 10px; display: none;">
+<div>
+<h4 style="margin-left: 20px;"><b>तुम्हाला महाराष्ट्राबाहेर भेट देण्याची गरज आहे का ?</b></h4>
+<h4 style="margin-left: 20px;">Do you need to visit outside of Maharashtra ?</h4>
+<h5 style="margin-left: 20px;">
+<b>
+<input class="isinterState_modal" type="radio" name="isinterState_modal" id="is_interstate_yes" value="1"><label style="margin-left: 7px;" for="is_interstate_yes"> हो / Yes</label>
+<input class="isinterState_modal" type="radio" name="isinterState_modal" id="is_interstate_no" value="0" style="margin-left: 25px;"><label for="is_interstate_no" style="margin-left: 7px;"> नाही / No</label>
+</b>
+</h5>
+</div>
+</div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-success" id="modal_sumbit">Accept</button>
+</div>
+</div>
+</div>
+</div>
+<footer class="main-footer">
+<div class="pull-right hidden-xs">
+Version 1.0
+</div>
+Copyright &copy; 2020 - <a href="https://adivid.com" target="_blank">Adivid Technologies Pvt Ltd.</a>
+</footer>
+</div>
+<style type="text/css">
+    .danger{
+        background-color: #ab0729;
+        margin-left: -15px;
+        margin-right: -15px;
+        margin-bottom: -20px;
+        color: #fff;
+    }
+
+    .danger, .success {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    @media screen and (max-width: 760px){
+        .eservice_fields{
+            margin-right: 0px !important;
+            margin-left: -2px !important;
+        }
+    }
+    .flashing_star {
+        width: 20px;
+        height: 20px;
+    }
+</style>
+<script>
+    $(document).ready(function(){
+  
+        $("#myModal").modal('show');
+        
+    });
+
+</script>
+<script type="text/javascript">
+    $(function () {
+        $("#modal_sumbit").click(function() {
+            $("#myModal").modal('hide');
+            // if($('.isinterState_modal').is(':checked')) {  
+            //     if($('.isinterState_modal:checked').val() == '1'){
+            //         $("#district option").remove() ; 
+            //         $('#district').append('<option selected>DG Office</option>'); 
+            //         $('#district').css('pointer-events','none'); 
+            //         $('#district').attr('readonly', true); 
+            //         $("#essential_service_type option").remove() ; 
+            //         $('#essential_service_type').append('<option value="" disabled selected>Select Essential Service Type</option>'); 
+            //         $('#essential_service_type').append('<option value="Death of direct relative">Death of direct relative</option>'); 
+            //         $('#essential_service_type').append('<option value="Extreme medical emergency">Extreme medical emergency</option>');                     
+            //         document.getElementById("message").style.display = 'block';
+            //         document.getElementById("message").innerHTML = 'तुम्ही महाराष्ट्र च्या बाहेर भेट देणार आहात म्हणुन तुम्ही (जिल्हा/पोलीस आयुक्तालय) निवडु नाही शकणार. <br> <br> Applicant upload relevant documents like death certificate, medical summary etc.';
+            //         document.getElementById("attached_document_message").innerHTML = '(Applicant upload relevant documents like death certificate, medical summary etc.)';
+            //         $("#isinter_state").val('1');
+            //     }
+            //     $("#myModal").modal('hide');
+            // } else {
+            //     alert("Please select an option");
+            // }
+        });
+    });
+
+    function checkvalidation(){
+        if(document.getElementById("district").value == ''){
+            document.getElementById("district_error").style.display = 'block';
+            document.getElementById("district_error").innerHTML = 'कृपया जिल्हा/पोलीस आयुक्तालय निवडा';
+            return false;
+        } else {
+            document.getElementById("district_error").style.display = 'none';
+        }
+        if(document.getElementById("name").value == ''){
+            document.getElementById("name_error").style.display = 'block';
+            document.getElementById("name_error").innerHTML = 'कृपया नाव भरा';
+            return false;
+
+        } else if(document.getElementById("name").value.length > '75'){
+            document.getElementById("name_error").style.display = 'block';
+            document.getElementById("name_error").innerHTML = 'कृपया नाव ७५ अक्षरांपेक्षा कमी भरा';
+            return false;
+
+        } else {
+            document.getElementById("name_error").style.display = 'none';
+        }
+
+        if(document.getElementById("essential_service_type").value == ''){
+            document.getElementById("essential_service_type_error").style.display = 'block';
+            document.getElementById("essential_service_type_error").innerHTML = 'कृपया अत्यावश्यक सेवा प्रकार निवडा';
+            return false;
+
+        } else {
+            document.getElementById("essential_service_type_error").style.display = 'none';
+        }
+
+        if(document.getElementById("vehicle_number").value == ''){
+            document.getElementById("vehicle_number_error").style.display = 'block';
+            document.getElementById("vehicle_number_error").innerHTML = 'कृपया वाहन क्रमांक भरा';
+            return false;
+
+        } else if(document.getElementById("vehicle_number").value.length > '15'){
+            document.getElementById("vehicle_number_error").style.display = 'block';
+            document.getElementById("vehicle_number_error").innerHTML = 'कृपया वाहन क्रमांक १५ अंकी भरा';
+            return false;
+
+        } else {
+            document.getElementById("vehicle_number_error").style.display = 'none';
+        }
+
+        if(document.getElementById("mobile_number").value == ''){
+            document.getElementById("mobile_number_error").style.display = 'block';
+            document.getElementById("mobile_number_error").innerHTML = 'कृपया मोबाईल क्रमांक भरा';
+            return false;
+
+        } else if(document.getElementById("mobile_number").value.length > '10' || document.getElementById("mobile_number").value.length < '10'){
+            document.getElementById("mobile_number_error").style.display = 'block';
+            document.getElementById("mobile_number_error").innerHTML = 'कृपया मोबाईल नंबर १० अंकी भरा';
+            return false;
+
+        } else {
+            document.getElementById("mobile_number_error").style.display = 'none';
+        }
+
+        if(document.getElementById("from_date").value == ''){
+            document.getElementById("from_date_error").style.display = 'block';
+            document.getElementById("from_date_error").innerHTML = 'कृपया तारीख निवडा';
+            return false;
+        } else {
+            document.getElementById("from_date_error").style.display = 'none';
+        }
+
+        if(document.getElementById("to_date").value == ''){
+            document.getElementById("to_date_error").style.display = 'block';
+            document.getElementById("to_date_error").innerHTML = 'कृपया तारीख निवडा';
+            return false;
+        } else {
+            document.getElementById("to_date_error").style.display = 'none';
+        }
+
+
+        // var Fromdate = document.getElementById("from_date").value;
+        // var Todate = document.getElementById("to_date").value;
+        // var enddate = new Date('05-03-2020 05:30:00');
+        // var TodayDate = new Date();
+        // TodayDate.setHours(5,30,0,0);
+       
+
+        // if (new Date(Fromdate).getTime() < TodayDate.getTime()) {
+        //     document.getElementById("from_date_error").style.display = 'block';
+        //     document.getElementById("from_date_error").innerHTML = 'आजची तारीख किंवा तिच्यापेक्षा मोठी तारीख निवडा';
+        //     return false;
+        // } else if (new Date(Fromdate).getTime() > enddate.getTime()) {
+        //     document.getElementById("from_date_error").style.display = 'block';
+        //     document.getElementById("from_date_error").innerHTML = '3 मे 2020 किंवा तिच्या पेक्षा लहान तारीख निवडा ';
+        //     return false;
+        // } else {
+        //     document.getElementById("from_date_error").style.display = 'none';
+        // }
+
+       
+
+        // if (new Date(Todate).getTime() < enddate.getTime()) {
+        //     document.getElementById("to_date_error").style.display = 'block';
+        //     document.getElementById("to_date_error").innerHTML = '3 मे 2020 किंवा तिच्या पेक्षा लहान तारीख निवडा ';
+        //     return false;
+        // } else if (new Date(Todate).getTime() > enddate.getTime()) {
+        //     document.getElementById("to_date_error").style.display = 'block';
+        //     document.getElementById("to_date_error").innerHTML = 'आजची तारीख किंवा तिच्यापेक्षा मोठी तारीख निवडा';
+        //     return false;
+        // } else {
+        //     document.getElementById("to_date_error").style.display = 'none';
+        // }
+
+        if(document.getElementById("no_co_passenger").value == ''){
+            document.getElementById("no_co_passenger_error").style.display = 'block';
+            document.getElementById("no_co_passenger_error").innerHTML = 'कृपया सहप्रवासी संख्या भरा';
+            return false;
+
+        }
+        else if(document.getElementById("no_co_passenger").value <= '0' && document.getElementById("no_co_passenger").value >= '2'){
+            document.getElementById("no_co_passenger_error").style.display = 'block';
+            document.getElementById("no_co_passenger_error").innerHTML = 'कृपया सहप्रवासी संख्या 0-2 मधली निवडा';
+            return false;
+        }
+        else {
+            document.getElementById("no_co_passenger_error").style.display = 'none';
+        }
+
+        if(document.getElementById("email_id").value.length > '100'){
+            document.getElementById("email_id_error").style.display = 'block';
+            document.getElementById("email_id_error").innerHTML = 'कृपया ई-मेल हा १०० अक्षरांपेक्षा कमी भरा';
+            return false;
+
+        } else {
+            document.getElementById("email_id_error").style.display = 'none';
+        }
+
+        if(document.getElementById("purpose").value == ''){
+            document.getElementById("purpose_error").style.display = 'block';
+            document.getElementById("purpose_error").innerHTML = 'कृपया अत्यावश्यक सेवा कारण/उददेश भरा';
+            return false;
+
+        } else if(document.getElementById("purpose").value.length > '200'){
+            document.getElementById("purpose_error").style.display = 'block';
+            document.getElementById("purpose_error").innerHTML = 'कृपया अत्यावश्यक सेवा कारण/उददेश २०० अक्षरांपेक्षा कमी भरा';
+            return false;
+
+        } else {
+            document.getElementById("purpose_error").style.display = 'none';
+        }
+
+        if(document.getElementById("address").value == ''){
+            document.getElementById("address_error").style.display = 'block';
+            document.getElementById("address_error").innerHTML = 'कृपया पत्ता भरा';
+            return false;
+
+        } else if(document.getElementById("address").value.length > '150'){
+            document.getElementById("address_error").style.display = 'block';
+            document.getElementById("address_error").innerHTML = 'कृपया पत्ता १५० अक्षरांपेक्षा कमी भरा';
+            return false;
+
+        } else {
+            document.getElementById("address_error").style.display = 'none';
+        }
+
+        if(document.getElementById("vehicle_type").value == ''){
+            document.getElementById("vehicle_type_error").style.display = 'block';
+            document.getElementById("vehicle_type_error").innerHTML = 'कृपया वाहनाचा प्रकार भरा';
+            return false;
+
+        } else if(document.getElementById("vehicle_type").value.length > '100'){
+            document.getElementById("vehicle_type_error").style.display = 'block';
+            document.getElementById("vehicle_type_error").innerHTML = 'कृपया वाहनाचा प्रकार १०० अक्षरांपेक्षा कमी भरा';
+            return false;
+
+        } else {
+            document.getElementById("vehicle_type_error").style.display = 'none';
+        }
+
+        if(document.getElementById("starting_point").value == ''){
+            document.getElementById("starting_point_error").style.display = 'block';
+            document.getElementById("starting_point_error").innerHTML = 'कृपया प्रवास प्रारंभ ठिकाण भरा';
+            return false;
+
+        } 
+        // else if(document.getElementById("starting_point").value.length > '30'){
+        //     document.getElementById("starting_point_error").style.display = 'block';
+        //     document.getElementById("starting_point_error").innerHTML = 'कृपया प्रारंभ ठिकाण ३० अक्षरांपेक्षा कमी भरा';
+        //     return false;
+
+        // } 
+        else {
+            document.getElementById("starting_point_error").style.display = 'none';
+        }
+
+        if(document.getElementById("destination").value == ''){
+            document.getElementById("destination_error").style.display = 'block';
+            document.getElementById("destination_error").innerHTML = 'कृपया प्रवासाचे अंतिम ठिकाण भरा';
+            return false;
+
+        } 
+        // else if(document.getElementById("destination").value.length > '30'){
+        //     document.getElementById("destination_error").style.display = 'block';
+        //     document.getElementById("destination_error").innerHTML = 'कृपया अंतिम ठिकाण ३० अक्षरांपेक्षा कमी भरा';
+        //     return false;
+
+        // } 
+        else {
+            document.getElementById("destination_error").style.display = 'none';
+        }
+
+        if(document.getElementById("no_co_passenger").value == ''){
+            document.getElementById("no_co_passenger_error").style.display = 'block';
+            document.getElementById("no_co_passenger_error").innerHTML = 'कृपया सहप्रवासी संख्या भरा';
+            return false;
+
+        }
+        else if(document.getElementById("no_co_passenger").value <= '0' && document.getElementById("no_co_passenger").value >= '2'){
+            document.getElementById("no_co_passenger_error").style.display = 'block';
+            document.getElementById("no_co_passenger_error").innerHTML = 'कृपया सहप्रवासी संख्या 0-2 मधली निवडा';
+            return false;
+        }
+        else {
+            document.getElementById("no_co_passenger_error").style.display = 'none';
+        }
+
+        if(document.getElementById("is_home_quarantine").value == ''){
+            document.getElementById("is_home_quarantine_error").style.display = 'block';
+            document.getElementById("is_home_quarantine_error").innerHTML = 'कृपया आपण Home Quarantine आहात का नाही तो प्रकार निवडा';
+            return false;
+
+        } else {
+            document.getElementById("is_home_quarantine_error").style.display = 'none';
+        }
+
+        if(document.getElementById("is_criminal_background").value == ''){
+            document.getElementById("is_criminal_background_error").style.display = 'block';
+            document.getElementById("is_criminal_background_error").innerHTML = 'कृपया आपल्या वर कोणताही फौजदारी गुन्हा दाखल आहे का नाही तो प्रकार निवडा';
+            return false;
+
+        } else {
+            document.getElementById("is_criminal_background_error").style.display = 'none';
+        }
+
+        if(document.getElementById("attachtext").value == ''){
+            document.getElementById("attached_document_error").style.display = 'block';
+            document.getElementById("attached_document_error").innerHTML = '<br>कृपया संबंधित कागदपत्र जोडा';
+            return false;
+
+        } else {
+            document.getElementById("attached_document_error").style.display = 'none';
+        }
+        return true;
+    }
+</script>
+
+<script src="https://covid19.mhpolice.in/bootstrap/js/bootstrap.min.js"></script>
+
+<script src="https://covid19.mhpolice.in/plugins/fastclick/fastclick.js"></script>
+
+<script src="https://covid19.mhpolice.in/dist/js/app.min.js"></script>
+
+<script src="https://covid19.mhpolice.in/plugins/sparkline/jquery.sparkline.min.js"></script>
+
+<script src="https://covid19.mhpolice.in/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="https://covid19.mhpolice.in/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+
+<script src="https://covid19.mhpolice.in/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+
+<script src="https://covid19.mhpolice.in/plugins/chartjs/Chart.min.js"></script>
+<script src="https://covid19.mhpolice.in/plugins/nicescroll/jquery.nicescroll.min.js"></script>
+<script src="https://covid19.mhpolice.in/plugins/jQuery/jquery.inputmask.bundle.min.js"></script>
+<script>
+    $.widget.bridge('uibutton', $.ui.button);
+</script>
+<script language="JavaScript">
+  /**
+    * Disable right-click of mouse, F12 key, and save key combinations on page
+    * By Arthur Gareginyan (arthurgareginyan@gmail.com)
+    * For full source code, visit https://mycyberuniverse.com
+    */
+  window.onload = function() {
+    document.addEventListener("contextmenu", function(e){
+      e.preventDefault();
+    }, false);
+    document.addEventListener("keydown", function(e) {
+    //document.onkeydown = function(e) {
+      // "I" key
+      if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {
+        disabledEvent(e);
+      }
+      // "J" key
+      if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {
+        disabledEvent(e);
+      }
+      // "S" key + macOS
+      if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+        disabledEvent(e);
+      }
+      // "U" key
+      if (e.ctrlKey && e.keyCode == 85) {
+        disabledEvent(e);
+      }
+      // "F12" key
+      if (event.keyCode == 123) {
+        disabledEvent(e);
+      }
+    }, false);
+    function disabledEvent(e){
+      if (e.stopPropagation){
+        e.stopPropagation();
+      } else if (window.event){
+        window.event.cancelBubble = true;
+      }
+      e.preventDefault();
+      return false;
+    }
+ };
+</script>
+</body>
+</html>
